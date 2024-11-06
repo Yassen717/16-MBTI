@@ -1,0 +1,91 @@
+{% extends "_layout.html" %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block content %}
+<div class="text-center font-sans">
+    <h1 class="text-3xl text-gray-800 mb-8">16 MBTI Types</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for mbti in mbti_types %}
+        <div class="bg-white p-6 rounded-lg shadow-md text-left relative">
+            <h2 class="text-xl font-semibold text-blue-500">{{ mbti.name }}</h2>
+            <p class="text-gray-600 mt-2">{{ mbti.description|truncatewords:20 }}</p>
+
+            <div class="mt-4">
+                <h3 class="text-lg font-medium text-gray-700 mb-2">Traits:</h3>
+                <ul class="text-gray-600">
+                    <li>🧠 Logic: <strong>{{ mbti.logic }}</strong></li>
+                    <li>💭 Imagination: <strong>{{ mbti.imagination }}</strong></li>
+                    <li>📏 Discipline: <strong>{{ mbti.discipline }}</strong></li>
+                </ul>
+            </div>
+
+            <!-- Circular Chart Container -->
+            <div class="mt-4 flex justify-center space-x-4">
+                <div id="chart-logic-{{ mbti.pk }}" class="w-20 h-20"></div>
+                <div id="chart-imagination-{{ mbti.pk }}" class="w-20 h-20"></div>
+                <div id="chart-discipline-{{ mbti.pk }}" class="w-20 h-20"></div>
+            </div>
+
+            <a href="{% url 'mbti_detail' mbti.pk %}" class="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-600">
+                Learn More
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        {% for mbti in mbti_types %}
+            createCircularChart('chart-logic-{{ mbti.pk }}', {{ mbti.logic }}, 'Logic');
+            createCircularChart('chart-imagination-{{ mbti.pk }}', {{ mbti.imagination }}, 'Imagination');
+            createCircularChart('chart-discipline-{{ mbti.pk }}', {{ mbti.discipline }}, 'Discipline');
+        {% endfor %}
+    });
+
+    function createCircularChart(containerId, value, label) {
+        const width = 80, height = 80, thickness = 8;
+        const radius = Math.min(width, height) / 2 - thickness;
+
+        const svg = d3.select(`#${containerId}`)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', `translate(${width / 2}, ${height / 2})`);
+
+        // Background Arc (Full Circle for 100%)
+        const backgroundArc = d3.arc()
+            .innerRadius(radius - thickness)
+            .outerRadius(radius)
+            .startAngle(0)
+            .endAngle(2 * Math.PI);
+
+        svg.append('path')
+            .attr('d', backgroundArc)
+            .attr('fill', '#e5e7eb');  // Light gray background
+
+        // Foreground Arc (Actual Value)
+        const foregroundArc = d3.arc()
+            .innerRadius(radius - thickness)
+            .outerRadius(radius)
+            .startAngle(0)
+            .endAngle((2 * Math.PI) * (value / 100));
+
+        svg.append('path')
+            .attr('d', foregroundArc)
+            .attr('fill', '#3b82f6')  // Customize color (blue)
+            .attr('class', 'transition duration-500 ease-out');  // Smooth transition
+
+        // Text Percentage
+        svg.append('text')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '.35em')
+            .attr('class', 'text-xs font-bold')
+            .attr('fill', '#333')
+            .text(`${value}%`);
+    }
+</script>
+{% endblock content %}
