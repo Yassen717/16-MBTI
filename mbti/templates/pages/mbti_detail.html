@@ -1,0 +1,34 @@
+{% extends "_layout.html" %}
+
+{% block title %}{{ mbti.name }} - MBTI Type{% endblock title %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+    <h1 style="font-size: 2.5rem; color: #333;">{{ mbti.name }}</h1>
+    
+    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+        <p style="font-size: 1.1rem; color: #555;">{{ mbti.description }}</p>
+        
+        <h2 style="font-size: 1.8rem; color: #444; margin-top: 20px;">Traits:</h2>
+        <ul style="list-style: none; padding: 0; font-size: 1.1rem; color: #666;">
+            <li style="margin: 5px 0;">🧠 Logic: <strong>{{ mbti.logic }}</strong></li>
+            <li style="margin: 5px 0;">💭 Imagination: <strong>{{ mbti.imagination }}</strong></li>
+            <li style="margin: 5px 0;">📏 Discipline: <strong>{{ mbti.discipline }}</strong></li>
+        </ul>
+    </div>
+    
+    <a href="{% url 'home' %}" style="
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        color: white;
+        background-color: #007BFF;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+    " onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007BFF';">
+        ⬅ Back to Home
+    </a>
+</div>
+{% endblock content %}
