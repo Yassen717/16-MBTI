@@ -1,10 +1,62 @@
-<!-- Navbar -->
-<header class="bg-blue-500 text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-        
-        <nav>
-            <a href="{% url 'home' %}" class="text-white px-3">Home</a>
-            <a href="{% url 'about' %}" class="text-white px-3">About</a>
-        </nav>
+<!-- Responsive Navbar -->
+<header class="bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+            <!-- Logo/Brand -->
+            <div class="flex items-center">
+                <a href="{% url 'home' %}" class="text-xl sm:text-2xl font-bold hover:text-blue-200 transition-colors duration-200">
+                    🧠 MBTI Explorer
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="{% url 'home' %}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 hover:bg-blue-600">
+                    🏠 Home
+                </a>
+                <a href="{% url 'about' %}" class="text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 hover:bg-blue-600">
+                    ℹ️ About
+                </a>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white hover:text-blue-200 focus:outline-none focus:text-blue-200">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-blue-500">
+                <a href="{% url 'home' %}" class="text-white hover:text-blue-200 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-blue-600">
+                    🏠 Home
+                </a>
+                <a href="{% url 'about' %}" class="text-white hover:text-blue-200 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-blue-600">
+                    ℹ️ About
+                </a>
+            </div>
+        </div>
     </div>
 </header>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        
+        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+</script>

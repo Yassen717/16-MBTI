@@ -1,53 +1,148 @@
 {% extends "_layout.html" %}
 
+{% block title %}About MBTI Personality Types{% endblock title %}
+
 {% block content %}
-    <h2 class="text-3xl font-bold mb-4">About the 16 Personality Types</h2>
-    <p class="text-lg text-gray-700 mb-4">
-        Welcome to our website! Here, we explore the fascinating world of the 16 personality types, based on the Myers-Briggs Type Indicator (MBTI).
-        MBTI is a psychological framework that categorizes individuals into one of 16 distinct personality types based on their preferences in four key areas:
-    </p>
+<div class="max-w-4xl mx-auto">
+    <!-- Header Section -->
+    <div class="text-center mb-8 sm:mb-12">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            ℹ️ About the 16 Personality Types
+        </h1>
+        <p class="text-gray-600 text-sm sm:text-base lg:text-lg">
+            Discover the fascinating world of personality psychology and the Myers-Briggs Type Indicator
+        </p>
+    </div>
 
-    <ul class="list-disc list-inside text-lg text-gray-700 mb-4">
-        <li><strong>Extraversion (E) vs. Introversion (I):</strong> Where do you focus your energy?</li>
-        <li><strong>Sensing (S) vs. Intuition (N):</strong> How do you gather information?</li>
-        <li><strong>Thinking (T) vs. Feeling (F):</strong> How do you make decisions?</li>
-        <li><strong>Judging (J) vs. Perceiving (P):</strong> How do you interact with the world around you?</li>
-    </ul>
+    <!-- Main Content -->
+    <div class="space-y-6 sm:space-y-8">
+        <!-- Introduction -->
+        <section class="bg-blue-50 p-4 sm:p-6 rounded-lg">
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+                🧠 Understanding MBTI
+            </h2>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-4">
+                Welcome to our comprehensive exploration of the 16 personality types, based on the Myers-Briggs Type Indicator (MBTI). 
+                MBTI is a psychological framework that categorizes individuals into one of 16 distinct personality types based on their 
+                preferences in four key areas:
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-blue-600 mb-2">🎯 Extraversion (E) vs. Introversion (I)</h3>
+                    <p class="text-sm text-gray-600">Where do you focus your energy?</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-purple-600 mb-2">🔍 Sensing (S) vs. Intuition (N)</h3>
+                    <p class="text-sm text-gray-600">How do you gather information?</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-green-600 mb-2">💭 Thinking (T) vs. Feeling (F)</h3>
+                    <p class="text-sm text-gray-600">How do you make decisions?</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-orange-600 mb-2">📋 Judging (J) vs. Perceiving (P)</h3>
+                    <p class="text-sm text-gray-600">How do you interact with the world?</p>
+                </div>
+            </div>
+        </section>
 
-    <p class="text-lg text-gray-700 mb-4">
-        Based on these preferences, each of the 16 personality types is formed, resulting in unique combinations like INTJ, ENFP, and ISFJ. This system is widely used in personal development, career guidance, and relationship compatibility.
-    </p>
+        <!-- The 16 Types -->
+        <section>
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
+                🎭 The 16 MBTI Personality Types
+            </h2>
+            <p class="text-gray-700 text-sm sm:text-base mb-6">
+                Based on these preferences, each of the 16 personality types is formed, resulting in unique combinations 
+                like INTJ, ENFP, and ISFJ. This system is widely used in personal development, career guidance, and relationship compatibility.
+            </p>
 
-    <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The 16 MBTI Personality Types</h3>
-    <p class="text-lg text-gray-700 mb-4">
-        Here are the 16 personality types along with a brief description of each:
-    </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-500">
+                    <h3 class="font-semibold text-gray-800">INTJ</h3>
+                    <p class="text-sm text-gray-600">The Architect – Strategic, analytical, and insightful.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500">
+                    <h3 class="font-semibold text-gray-800">INTP</h3>
+                    <p class="text-sm text-gray-600">The Thinker – Curious, inventive, and philosophical.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-500">
+                    <h3 class="font-semibold text-gray-800">ENTJ</h3>
+                    <p class="text-sm text-gray-600">The Commander – Bold, decisive, and focused on achievement.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-500">
+                    <h3 class="font-semibold text-gray-800">ENTP</h3>
+                    <p class="text-sm text-gray-600">The Debater – Energetic, creative, and excellent at problem-solving.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-red-500">
+                    <h3 class="font-semibold text-gray-800">INFJ</h3>
+                    <p class="text-sm text-gray-600">The Advocate – Compassionate, insightful, and idealistic.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-pink-500">
+                    <h3 class="font-semibold text-gray-800">INFP</h3>
+                    <p class="text-sm text-gray-600">The Mediator – Empathetic, open-minded, and focused on personal values.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-indigo-500">
+                    <h3 class="font-semibold text-gray-800">ENFJ</h3>
+                    <p class="text-sm text-gray-600">The Protagonist – Charismatic, empathetic, and people-oriented.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-teal-500">
+                    <h3 class="font-semibold text-gray-800">ENFP</h3>
+                    <p class="text-sm text-gray-600">The Campaigner – Enthusiastic, imaginative, and optimistic.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-yellow-500">
+                    <h3 class="font-semibold text-gray-800">ISTJ</h3>
+                    <p class="text-sm text-gray-600">The Logistician – Responsible, practical, and focused on details.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-gray-500">
+                    <h3 class="font-semibold text-gray-800">ISFJ</h3>
+                    <p class="text-sm text-gray-600">The Defender – Caring, reliable, and detail-oriented.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-400">
+                    <h3 class="font-semibold text-gray-800">ESTJ</h3>
+                    <p class="text-sm text-gray-600">The Executive – Organized, efficient, and driven to lead.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400">
+                    <h3 class="font-semibold text-gray-800">ESFJ</h3>
+                    <p class="text-sm text-gray-600">The Consul – Sociable, caring, and highly attuned to others' needs.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-400">
+                    <h3 class="font-semibold text-gray-800">ISTP</h3>
+                    <p class="text-sm text-gray-600">The Virtuoso – Practical, adaptable, and spontaneous.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-400">
+                    <h3 class="font-semibold text-gray-800">ISFP</h3>
+                    <p class="text-sm text-gray-600">The Adventurer – Creative, independent, and driven by personal values.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-red-400">
+                    <h3 class="font-semibold text-gray-800">ESTP</h3>
+                    <p class="text-sm text-gray-600">The Entrepreneur – Energetic, action-oriented, and love challenges.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-pink-400">
+                    <h3 class="font-semibold text-gray-800">ESFP</h3>
+                    <p class="text-sm text-gray-600">The Entertainer – Fun-loving, spontaneous, and thrives on social interactions.</p>
+                </div>
+            </div>
+        </section>
 
-    <ul class="grid grid-cols-2 gap-6">
-        <li class="text-lg text-gray-700"><strong>INTJ:</strong> The Architect – Strategic, analytical, and insightful.</li>
-        <li class="text-lg text-gray-700"><strong>INTP:</strong> The Thinker – Curious, inventive, and philosophical.</li>
-        <li class="text-lg text-gray-700"><strong>ENTJ:</strong> The Commander – Bold, decisive, and focused on achievement.</li>
-        <li class="text-lg text-gray-700"><strong>ENTP:</strong> The Debater – Energetic, creative, and excellent at problem-solving.</li>
-        <li class="text-lg text-gray-700"><strong>INFJ:</strong> The Advocate – Compassionate, insightful, and idealistic.</li>
-        <li class="text-lg text-gray-700"><strong>INFP:</strong> The Mediator – Empathetic, open-minded, and focused on personal values.</li>
-        <li class="text-lg text-gray-700"><strong>ENFJ:</strong> The Protagonist – Charismatic, empathetic, and people-oriented.</li>
-        <li class="text-lg text-gray-700"><strong>ENFP:</strong> The Campaigner – Enthusiastic, imaginative, and optimistic.</li>
-        <li class="text-lg text-gray-700"><strong>ISTJ:</strong> The Logistician – Responsible, practical, and focused on details.</li>
-        <li class="text-lg text-gray-700"><strong>ISFJ:</strong> The Defender – Caring, reliable, and detail-oriented.</li>
-        <li class="text-lg text-gray-700"><strong>ESTJ:</strong> The Executive – Organized, efficient, and driven to lead.</li>
-        <li class="text-lg text-gray-700"><strong>ESFJ:</strong> The Consul – Sociable, caring, and highly attuned to the needs of others.</li>
-        <li class="text-lg text-gray-700"><strong>ISTP:</strong> The Virtuoso – Practical, adaptable, and spontaneous.</li>
-        <li class="text-lg text-gray-700"><strong>ISFP:</strong> The Adventurer – Creative, independent, and driven by personal values.</li>
-        <li class="text-lg text-gray-700"><strong>ESTP:</strong> The Entrepreneur – Energetic, action-oriented, and love challenges.</li>
-        <li class="text-lg text-gray-700"><strong>ESFP:</strong> The Entertainer – Fun-loving, spontaneous, and thrives on social interactions.</li>
-    </ul>
-
-    <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The Science Behind MBTI</h3>
-    <p class="text-lg text-gray-700 mb-4">
-        The MBTI is based on Carl Jung’s theory of psychological types. It was developed by Isabel Briggs Myers and her mother, Katharine Cook Briggs, during the 1940s. Their work aimed to make Jung’s theory more accessible and applicable to individuals’ personal and professional lives.
-    </p>
-    <p class="text-lg text-gray-700 mb-4">
-        Although MBTI is widely used, it has been the subject of criticism in psychological circles. Critics argue that it oversimplifies human behavior and lacks strong scientific backing. Despite this, many people find MBTI to be a useful tool for self-awareness, personal growth, and understanding others.
-    </p>
-
+        <!-- Science Section -->
+        <section class="bg-gray-50 p-4 sm:p-6 rounded-lg">
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+                🔬 The Science Behind MBTI
+            </h2>
+            <div class="space-y-4 text-sm sm:text-base text-gray-700">
+                <p>
+                    The MBTI is based on Carl Jung's theory of psychological types. It was developed by Isabel Briggs Myers 
+                    and her mother, Katharine Cook Briggs, during the 1940s. Their work aimed to make Jung's theory more 
+                    accessible and applicable to individuals' personal and professional lives.
+                </p>
+                <p>
+                    Although MBTI is widely used, it has been the subject of criticism in psychological circles. Critics argue 
+                    that it oversimplifies human behavior and lacks strong scientific backing. Despite this, many people find 
+                    MBTI to be a useful tool for self-awareness, personal growth, and understanding others.
+                </p>
+            </div>
+        </section>
+    </div>
+</div>
 {% endblock content %}

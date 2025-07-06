@@ -1,34 +1,176 @@
 {% extends "_layout.html" %}
 
-{% block title %}{{ mbti.name }} - MBTI Type{% endblock title %}
+{% block title %}{{ mbti.name }} - MBTI Personality Type{% endblock title %}
 
 {% block content %}
-<div style="max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; font-family: Arial, sans-serif;">
-    <h1 style="font-size: 2.5rem; color: #333;">{{ mbti.name }}</h1>
-    
-    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
-        <p style="font-size: 1.1rem; color: #555;">{{ mbti.description }}</p>
-        
-        <h2 style="font-size: 1.8rem; color: #444; margin-top: 20px;">Traits:</h2>
-        <ul style="list-style: none; padding: 0; font-size: 1.1rem; color: #666;">
-            <li style="margin: 5px 0;">🧠 Logic: <strong>{{ mbti.logic }}</strong></li>
-            <li style="margin: 5px 0;">💭 Imagination: <strong>{{ mbti.imagination }}</strong></li>
-            <li style="margin: 5px 0;">📏 Discipline: <strong>{{ mbti.discipline }}</strong></li>
-        </ul>
+<div class="max-w-4xl mx-auto">
+    <!-- Header Section -->
+    <div class="text-center mb-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+            {{ mbti.name }}
+        </h1>
+        <div class="w-24 h-1 bg-blue-500 mx-auto rounded-full"></div>
     </div>
     
-    <a href="{% url 'home' %}" style="
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        color: white;
-        background-color: #007BFF;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 1.1rem;
-        transition: background-color 0.3s ease;
-    " onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007BFF';">
-        ⬅ Back to Home
-    </a>
+    <!-- Main Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Description Card -->
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 sm:p-8 rounded-lg shadow-lg">
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+                📝 Description
+            </h2>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                {{ mbti.description }}
+            </p>
+        </div>
+        
+        <!-- Traits Card -->
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-100">
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
+                🎯 Personality Traits
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- Logic Trait -->
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="flex items-center text-sm sm:text-base font-medium text-gray-700">
+                            🧠 Logic
+                        </span>
+                        <span class="text-lg sm:text-xl font-bold text-blue-600">
+                            {{ mbti.logic }}%
+                        </span>
+                    </div>
+                    <div class="w-full bg-blue-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" 
+                             style="width: {{ mbti.logic }}%"></div>
+                    </div>
+                </div>
+                
+                <!-- Imagination Trait -->
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="flex items-center text-sm sm:text-base font-medium text-gray-700">
+                            💭 Imagination
+                        </span>
+                        <span class="text-lg sm:text-xl font-bold text-purple-600">
+                            {{ mbti.imagination }}%
+                        </span>
+                    </div>
+                    <div class="w-full bg-purple-200 rounded-full h-2">
+                        <div class="bg-purple-600 h-2 rounded-full transition-all duration-500" 
+                             style="width: {{ mbti.imagination }}%"></div>
+                    </div>
+                </div>
+                
+                <!-- Discipline Trait -->
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="flex items-center text-sm sm:text-base font-medium text-gray-700">
+                            📏 Discipline
+                        </span>
+                        <span class="text-lg sm:text-xl font-bold text-green-600">
+                            {{ mbti.discipline }}%
+                        </span>
+                    </div>
+                    <div class="w-full bg-green-200 rounded-full h-2">
+                        <div class="bg-green-600 h-2 rounded-full transition-all duration-500" 
+                             style="width: {{ mbti.discipline }}%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Interactive Charts Section -->
+    <div class="mt-8 sm:mt-12">
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 text-center">
+            📊 Interactive Charts
+        </h2>
+        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <h3 class="text-sm sm:text-base font-medium text-gray-700 mb-4">Logic</h3>
+                    <div id="chart-logic-detail" class="w-32 h-32 mx-auto"></div>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-sm sm:text-base font-medium text-gray-700 mb-4">Imagination</h3>
+                    <div id="chart-imagination-detail" class="w-32 h-32 mx-auto"></div>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-sm sm:text-base font-medium text-gray-700 mb-4">Discipline</h3>
+                    <div id="chart-discipline-detail" class="w-32 h-32 mx-auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="mt-8 sm:mt-12 text-center space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+        <a href="{% url 'home' %}" 
+           class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 transform hover:scale-105">
+            🏠 Back to Home
+        </a>
+        <a href="{% url 'about' %}" 
+           class="inline-block bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 transform hover:scale-105">
+            ℹ️ Learn More About MBTI
+        </a>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        createCircularChart('chart-logic-detail', {{ mbti.logic }}, 'Logic', '#3b82f6');
+        createCircularChart('chart-imagination-detail', {{ mbti.imagination }}, 'Imagination', '#8b5cf6');
+        createCircularChart('chart-discipline-detail', {{ mbti.discipline }}, 'Discipline', '#10b981');
+    });
+
+    function createCircularChart(containerId, value, label, color) {
+        const container = document.getElementById(containerId);
+        const size = 128; // Fixed size for detail page
+        const thickness = 12;
+        const radius = (size - thickness) / 2;
+
+        // Clear previous content
+        container.innerHTML = '';
+
+        const svg = d3.select(`#${containerId}`)
+            .append('svg')
+            .attr('width', size)
+            .attr('height', size)
+            .append('g')
+            .attr('transform', `translate(${size / 2}, ${size / 2})`);
+
+        // Background Arc
+        const backgroundArc = d3.arc()
+            .innerRadius(radius - thickness)
+            .outerRadius(radius)
+            .startAngle(0)
+            .endAngle(2 * Math.PI);
+
+        svg.append('path')
+            .attr('d', backgroundArc)
+            .attr('fill', '#e5e7eb');
+
+        // Foreground Arc
+        const foregroundArc = d3.arc()
+            .innerRadius(radius - thickness)
+            .outerRadius(radius)
+            .startAngle(0)
+            .endAngle((2 * Math.PI) * (value / 100));
+
+        svg.append('path')
+            .attr('d', foregroundArc)
+            .attr('fill', color)
+            .attr('class', 'transition-all duration-1000 ease-out');
+
+        // Percentage Text
+        svg.append('text')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '.35em')
+            .attr('class', 'font-bold text-lg')
+            .attr('fill', '#374151')
+            .text(`${value}%`);
+    }
+</script>
 {% endblock content %}

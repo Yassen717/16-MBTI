@@ -1,36 +1,72 @@
 {% extends "_layout.html" %}
 
-{% block title %}Home page{% endblock title %}
+{% block title %}MBTI Personality Types Explorer{% endblock title %}
 
 {% block content %}
 <div class="text-center font-sans">
-    <h1 class="text-3xl text-gray-800 mb-8">16 MBTI Types</h1>
+    <!-- Hero Section -->
+    <div class="mb-8 sm:mb-12">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+            🧠 16 MBTI Personality Types
+        </h1>
+        <p class="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto">
+            Explore the fascinating world of personality types with interactive charts and detailed trait analysis
+        </p>
+    </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- MBTI Types Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         {% for mbti in mbti_types %}
-        <div class="bg-white p-6 rounded-lg shadow-md text-left relative">
-            <h2 class="text-xl font-semibold text-blue-500">{{ mbti.name }}</h2>
-            <p class="text-gray-600 mt-2">{{ mbti.description|truncatewords:20 }}</p>
-
-            <div class="mt-4">
-                <h3 class="text-lg font-medium text-gray-700 mb-2">Traits:</h3>
-                <ul class="text-gray-600">
-                    <li>🧠 Logic: <strong>{{ mbti.logic }}</strong></li>
-                    <li>💭 Imagination: <strong>{{ mbti.imagination }}</strong></li>
-                    <li>📏 Discipline: <strong>{{ mbti.discipline }}</strong></li>
-                </ul>
+        <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-600 mb-2">{{ mbti.name }}</h2>
+                <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                    {{ mbti.description|truncatewords:15 }}
+                </p>
             </div>
 
-            <!-- Circular Chart Container -->
-            <div class="mt-4 flex justify-center space-x-4">
-                <div id="chart-logic-{{ mbti.pk }}" class="w-20 h-20"></div>
-                <div id="chart-imagination-{{ mbti.pk }}" class="w-20 h-20"></div>
-                <div id="chart-discipline-{{ mbti.pk }}" class="w-20 h-20"></div>
+            <!-- Traits Section -->
+            <div class="mb-4">
+                <h3 class="text-sm sm:text-base font-semibold text-gray-700 mb-2 text-center">Traits:</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center text-xs sm:text-sm">
+                        <span class="flex items-center">
+                            🧠 <span class="ml-1">Logic</span>
+                        </span>
+                        <span class="font-bold text-blue-600">{{ mbti.logic }}%</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs sm:text-sm">
+                        <span class="flex items-center">
+                            💭 <span class="ml-1">Imagination</span>
+                        </span>
+                        <span class="font-bold text-purple-600">{{ mbti.imagination }}%</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs sm:text-sm">
+                        <span class="flex items-center">
+                            📏 <span class="ml-1">Discipline</span>
+                        </span>
+                        <span class="font-bold text-green-600">{{ mbti.discipline }}%</span>
+                    </div>
+                </div>
             </div>
 
-            <a href="{% url 'mbti_detail' mbti.pk %}" class="inline-block mt-4 bg-blue-500 text-white px-4 py-2 rounded transition duration-300 hover:bg-blue-600">
-                Learn More
-            </a>
+            <!-- Charts Container -->
+            <div class="mb-4">
+                <div class="flex justify-center space-x-2 sm:space-x-4">
+                    <div id="chart-logic-{{ mbti.pk }}" class="w-12 h-12 sm:w-16 sm:h-16"></div>
+                    <div id="chart-imagination-{{ mbti.pk }}" class="w-12 h-12 sm:w-16 sm:h-16"></div>
+                    <div id="chart-discipline-{{ mbti.pk }}" class="w-12 h-12 sm:w-16 sm:h-16"></div>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="text-center">
+                <a href="{% url 'mbti_detail' mbti.pk %}" 
+                   class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors duration-200 transform hover:scale-105">
+                    📖 Learn More
+                </a>
+            </div>
         </div>
         {% endfor %}
     </div>
@@ -39,24 +75,29 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         {% for mbti in mbti_types %}
-            createCircularChart('chart-logic-{{ mbti.pk }}', {{ mbti.logic }}, 'Logic');
-            createCircularChart('chart-imagination-{{ mbti.pk }}', {{ mbti.imagination }}, 'Imagination');
-            createCircularChart('chart-discipline-{{ mbti.pk }}', {{ mbti.discipline }}, 'Discipline');
+            createCircularChart('chart-logic-{{ mbti.pk }}', {{ mbti.logic }}, 'Logic', '#3b82f6');
+            createCircularChart('chart-imagination-{{ mbti.pk }}', {{ mbti.imagination }}, 'Imagination', '#8b5cf6');
+            createCircularChart('chart-discipline-{{ mbti.pk }}', {{ mbti.discipline }}, 'Discipline', '#10b981');
         {% endfor %}
     });
 
-    function createCircularChart(containerId, value, label) {
-        const width = 80, height = 80, thickness = 8;
-        const radius = Math.min(width, height) / 2 - thickness;
+    function createCircularChart(containerId, value, label, color) {
+        const container = document.getElementById(containerId);
+        const size = window.innerWidth < 640 ? 48 : 64; // Responsive size
+        const thickness = Math.max(3, size / 10);
+        const radius = (size - thickness) / 2;
+
+        // Clear previous content
+        container.innerHTML = '';
 
         const svg = d3.select(`#${containerId}`)
             .append('svg')
-            .attr('width', width)
-            .attr('height', height)
+            .attr('width', size)
+            .attr('height', size)
             .append('g')
-            .attr('transform', `translate(${width / 2}, ${height / 2})`);
+            .attr('transform', `translate(${size / 2}, ${size / 2})`);
 
-        // Background Arc (Full Circle for 100%)
+        // Background Arc
         const backgroundArc = d3.arc()
             .innerRadius(radius - thickness)
             .outerRadius(radius)
@@ -65,9 +106,9 @@
 
         svg.append('path')
             .attr('d', backgroundArc)
-            .attr('fill', '#e5e7eb');  // Light gray background
+            .attr('fill', '#e5e7eb');
 
-        // Foreground Arc (Actual Value)
+        // Foreground Arc
         const foregroundArc = d3.arc()
             .innerRadius(radius - thickness)
             .outerRadius(radius)
@@ -76,16 +117,20 @@
 
         svg.append('path')
             .attr('d', foregroundArc)
-            .attr('fill', '#3b82f6')  // Customize color (blue)
-            .attr('class', 'transition duration-500 ease-out');  // Smooth transition
+            .attr('fill', color)
+            .attr('class', 'transition-all duration-500 ease-out');
 
-        // Text Percentage
+        // Percentage Text
+        const fontSize = size < 50 ? '8px' : '10px';
         svg.append('text')
             .attr('text-anchor', 'middle')
             .attr('dy', '.35em')
-            .attr('class', 'text-xs font-bold')
-            .attr('fill', '#333')
+            .attr('class', 'font-bold')
+            .attr('fill', '#374151')
+            .style('font-size', fontSize)
             .text(`${value}%`);
     }
+
+
 </script>
 {% endblock content %}

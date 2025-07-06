@@ -3,28 +3,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Django Site{% endblock %}</title>
-    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
-    <!-- Include Tailwind CSS from CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Explore the 16 MBTI personality types with interactive charts and detailed trait analysis">
+    <meta name="keywords" content="MBTI, personality types, Myers-Briggs, psychology, traits">
+    <title>{% block title %}MBTI Personality Types Explorer{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    
+    <!-- Custom responsive styles -->
+    <style>
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Better touch targets for mobile */
+        @media (max-width: 768px) {
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+    </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="flex flex-col min-h-screen bg-gray-50 font-sans leading-normal tracking-normal">
 
     {% include "components/navbar.html" %}
 
     <!-- Content Area -->
-    <main class="container mx-auto my-8 p-4 bg-white shadow-md rounded flex-grow">
-        {% block content %}{% endblock %}
+    <main class="flex-grow">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="p-4 sm:p-6 lg:p-8">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
     {% include "components/footer.html" %}
     
-   
-    
-        
 </body>
 </html>
