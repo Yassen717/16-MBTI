@@ -207,13 +207,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help:
 
-- 🐛 **Report bugs**: [GitHub Issues](https://github.com/yourusername/mbti-personality-explorer/issues)
-- 💡 **Request features**: [GitHub Issues](https://github.com/yourusername/mbti-personality-explorer/issues)
-- 📧 **Contact**: your.email@example.com
-
+- 🐛 **Report bugs**: [GitHub Issues](https://github.com/Yassen717/mbti-personality-explorer/issues)
+- 💡 **Request features**: [GitHub Issues](https://github.com/Yassen717/mbti-personality-explorer/issues)
+- 📧 **Contact**: engyassenibrahim@gmail.com
 ---
 
 <div align="center">
-  <p>Made with ❤️ by [Your Name]</p>
+  <p>Made with ❤️ </p>
   <p>⭐ Star this repository if you found it helpful!</p>
 </div> 
