@@ -4,76 +4,121 @@
 
 {% block content %}
 <div class="text-center font-sans">
-    <!-- Search Bar -->
-    <form method="get" action="" class="flex justify-center mb-6">
-        <input type="text" name="q" value="{{ q|default:'' }}" placeholder="Search MBTI type or description..." class="border border-gray-300 rounded-md px-3 py-2 w-full max-w-md" />
-        <button type="submit" class="ml-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Search</button>
-    </form>
+    <!-- Search Section -->
+    <div class="max-w-2xl mx-auto mb-8 sm:mb-12 animate-slide-up">
+        <form method="get" action="" class="relative">
+            <div class="relative group">
+                <input type="text" 
+                       name="q" 
+                       value="{{ q|default:'' }}" 
+                       placeholder="Search MBTI type or description..." 
+                       class="w-full px-6 py-4 pr-14 rounded-2xl border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-primary-500 dark:focus:border-primary-400 focus:ring-4 focus:ring-primary-500/10 transition-all duration-300 text-base shadow-sm" 
+                       aria-label="Search MBTI types" />
+                <button type="submit" 
+                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-xl bg-gradient-to-r from-primary-500 to-accent-purple text-white hover:shadow-lg hover:scale-105 transition-all duration-200" 
+                        aria-label="Submit search">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
 
     <!-- Hero Section -->
-    <div class="mb-8 sm:mb-12">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
-            🧠 16 MBTI Personality Types
-        </h1>
-        <p class="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto">
-            Explore the fascinating world of personality types with interactive charts and detailed trait analysis
-        </p>
+    <div class="mb-10 sm:mb-14 animate-slide-up" style="animation-delay: 0.1s">
+        <div class="relative">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-primary-600 via-accent-purple to-accent-green bg-clip-text text-transparent animate-gradient">
+                    16 MBTI Personality Types
+                </span>
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+                Explore the fascinating world of personality types with interactive charts and detailed trait analysis
+            </p>
+        </div>
     </div>
     
     <!-- MBTI Types Grid -->
     {% if mbti_types|length == 0 %}
-        <p class="text-gray-600">No results found for "{{ q }}".</p>
+        <div class="text-center py-12 animate-fade-in">
+            <div class="text-6xl mb-4">🔍</div>
+            <p class="text-slate-600 dark:text-slate-400 text-lg">
+                No results found for "<span class="font-semibold text-primary-600 dark:text-primary-400">{{ q }}</span>"
+            </p>
+            <p class="text-slate-500 dark:text-slate-500 mt-2">Try searching for different keywords</p>
+        </div>
     {% endif %}
+    
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         {% for mbti in mbti_types %}
-        <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
-            <!-- Header -->
+        <div class="card-hover group bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 dark:border-slate-700 animate-scale-in" style="animation-delay: {{ forloop.counter|floatformat:1 }}s">
+            <!-- Header with Gradient Badge -->
             <div class="text-center mb-4">
-                <h2 class="text-lg sm:text-xl font-bold text-blue-600 mb-2">{{ mbti.name }}</h2>
-                <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div class="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-primary-500/10 to-accent-purple/10 dark:from-primary-500/20 dark:to-accent-purple/20 mb-3">
+                    <h2 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent">
+                        {{ mbti.name }}
+                    </h2>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
                     {{ mbti.description|truncatewords:15 }}
                 </p>
             </div>
 
-            <!-- Traits Section -->
-            <div class="mb-4">
-                <h3 class="text-sm sm:text-base font-semibold text-gray-700 mb-2 text-center">Traits:</h3>
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center text-xs sm:text-sm">
-                        <span class="flex items-center">
-                            🧠 <span class="ml-1">Logic</span>
-                        </span>
-                        <span class="font-bold text-blue-600">{{ mbti.logic }}%</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs sm:text-sm">
-                        <span class="flex items-center">
-                            💭 <span class="ml-1">Imagination</span>
-                        </span>
-                        <span class="font-bold text-purple-600">{{ mbti.imagination }}%</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs sm:text-sm">
-                        <span class="flex items-center">
-                            📏 <span class="ml-1">Discipline</span>
-                        </span>
-                        <span class="font-bold text-green-600">{{ mbti.discipline }}%</span>
-                    </div>
+            <!-- Traits Section with Progress Bars -->
+            <div class="mb-5 space-y-3">
+                <div class="flex items-center justify-between text-xs sm:text-sm">
+                    <span class="flex items-center space-x-1.5 text-slate-700 dark:text-slate-300">
+                        <span class="text-base">🧠</span>
+                        <span class="font-medium">Logic</span>
+                    </span>
+                    <span class="font-bold text-primary-600 dark:text-primary-400">{{ mbti.logic }}%</span>
+                </div>
+                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-primary-500 to-primary-400 h-2 rounded-full transition-all duration-500" 
+                         style="width: {{ mbti.logic }}%"></div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs sm:text-sm">
+                    <span class="flex items-center space-x-1.5 text-slate-700 dark:text-slate-300">
+                        <span class="text-base">💭</span>
+                        <span class="font-medium">Imagination</span>
+                    </span>
+                    <span class="font-bold text-accent-purple dark:text-purple-400">{{ mbti.imagination }}%</span>
+                </div>
+                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-accent-purple to-purple-400 h-2 rounded-full transition-all duration-500" 
+                         style="width: {{ mbti.imagination }}%"></div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs sm:text-sm">
+                    <span class="flex items-center space-x-1.5 text-slate-700 dark:text-slate-300">
+                        <span class="text-base">📏</span>
+                        <span class="font-medium">Discipline</span>
+                    </span>
+                    <span class="font-bold text-accent-green dark:text-green-400">{{ mbti.discipline }}%</span>
+                </div>
+                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-accent-green to-green-400 h-2 rounded-full transition-all duration-500" 
+                         style="width: {{ mbti.discipline }}%"></div>
                 </div>
             </div>
 
             <!-- Charts Container -->
-            <div class="mb-4">
-                <div class="flex justify-center space-x-2 sm:space-x-4">
-                    <div id="chart-logic-{{ mbti.pk }}" class="w-12 h-12 sm:w-16 sm:h-16" aria-label="Logic chart for {{ mbti.name }}"></div>
-                    <div id="chart-imagination-{{ mbti.pk }}" class="w-12 h-12 sm:w-16 sm:h-16" aria-label="Imagination chart for {{ mbti.name }}"></div>
-                    <div id="chart-discipline-{{ mbti.pk }}" class="w-12 h-12 sm:w-16 sm:h-16" aria-label="Discipline chart for {{ mbti.name }}"></div>
+            <div class="mb-5">
+                <div class="flex justify-center space-x-3 sm:space-x-4">
+                    <div id="chart-logic-{{ mbti.pk }}" class="w-14 h-14 sm:w-16 sm:h-16" aria-label="Logic chart for {{ mbti.name }}"></div>
+                    <div id="chart-imagination-{{ mbti.pk }}" class="w-14 h-14 sm:w-16 sm:h-16" aria-label="Imagination chart for {{ mbti.name }}"></div>
+                    <div id="chart-discipline-{{ mbti.pk }}" class="w-14 h-14 sm:w-16 sm:h-16" aria-label="Discipline chart for {{ mbti.name }}"></div>
                 </div>
             </div>
 
             <!-- Action Button -->
             <div class="text-center">
                 <a href="{% url 'mbti_detail' mbti.pk %}" 
-                   class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors duration-200 transform hover:scale-105">
-                    📖 Learn More
+                   class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-accent-purple hover:from-primary-600 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                    <span>📖</span>
+                    <span>Learn More</span>
                 </a>
             </div>
         </div>
@@ -84,7 +129,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         {% for mbti in mbti_types %}
-            createCircularChart('chart-logic-{{ mbti.pk }}', {{ mbti.logic }}, 'Logic', '#3b82f6');
+            createCircularChart('chart-logic-{{ mbti.pk }}', {{ mbti.logic }}, 'Logic', '#0ea5e9');
             createCircularChart('chart-imagination-{{ mbti.pk }}', {{ mbti.imagination }}, 'Imagination', '#8b5cf6');
             createCircularChart('chart-discipline-{{ mbti.pk }}', {{ mbti.discipline }}, 'Discipline', '#10b981');
         {% endfor %}
@@ -92,11 +137,10 @@
 
     function createCircularChart(containerId, value, label, color) {
         const container = document.getElementById(containerId);
-        const size = window.innerWidth < 640 ? 48 : 64; // Responsive size
-        const thickness = Math.max(3, size / 10);
+        const size = window.innerWidth < 640 ? 56 : 64;
+        const thickness = Math.max(4, size / 10);
         const radius = (size - thickness) / 2;
 
-        // Clear previous content
         container.innerHTML = '';
 
         const svg = d3.select(`#${containerId}`)
@@ -106,7 +150,6 @@
             .append('g')
             .attr('transform', `translate(${size / 2}, ${size / 2})`);
 
-        // Background Arc
         const backgroundArc = d3.arc()
             .innerRadius(radius - thickness)
             .outerRadius(radius)
@@ -115,9 +158,8 @@
 
         svg.append('path')
             .attr('d', backgroundArc)
-            .attr('fill', '#e5e7eb');
+            .attr('fill', 'rgba(148, 163, 184, 0.2)');
 
-        // Foreground Arc
         const foregroundArc = d3.arc()
             .innerRadius(radius - thickness)
             .outerRadius(radius)
@@ -127,15 +169,14 @@
         svg.append('path')
             .attr('d', foregroundArc)
             .attr('fill', color)
-            .attr('class', 'transition-all duration-500 ease-out');
+            .attr('class', 'transition-all duration-700 ease-out');
 
-        // Percentage Text
-        const fontSize = size < 50 ? '8px' : '10px';
+        const fontSize = size < 50 ? '9px' : '10px';
         svg.append('text')
             .attr('text-anchor', 'middle')
             .attr('dy', '.35em')
             .attr('class', 'font-bold')
-            .attr('fill', '#374151')
+            .attr('fill', 'currentColor')
             .style('font-size', fontSize)
             .text(`${value}%`);
     }
