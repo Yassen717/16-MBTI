@@ -3,134 +3,165 @@
 {% block title %}About MBTI Personality Types{% endblock title %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto">
+<div class="max-w-5xl mx-auto space-y-8">
     <!-- Header Section -->
-    <div class="text-center mb-8 sm:mb-12">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
-            ℹ️ About the 16 Personality Types
+    <div class="text-center animate-slide-up">
+        <div class="inline-block mb-4">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-purple/20 dark:from-primary-500/30 dark:to-accent-purple/30">
+                <span class="text-4xl">ℹ️</span>
+            </div>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            <span class="bg-gradient-to-r from-primary-600 via-accent-purple to-accent-green bg-clip-text text-transparent">
+                About 16 Personality Types
+            </span>
         </h1>
-        <p class="text-gray-600 text-sm sm:text-base lg:text-lg">
+        <p class="text-slate-600 dark:text-slate-400 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
             Discover the fascinating world of personality psychology and the Myers-Briggs Type Indicator
         </p>
+        <div class="flex justify-center mt-6">
+            <div class="h-1 w-48 bg-gradient-to-r from-primary-500 to-accent-purple rounded-full"></div>
+        </div>
     </div>
 
     <!-- Main Content -->
-    <div class="space-y-6 sm:space-y-8">
+    <div class="space-y-8 sm:space-y-10">
         <!-- Introduction -->
-        <section class="bg-blue-50 p-4 sm:p-6 rounded-lg">
-            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
-                🧠 Understanding MBTI
-            </h2>
-            <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-4">
-                Welcome to our comprehensive exploration of the 16 personality types, based on the Myers-Briggs Type Indicator (MBTI). 
+        <section class="bg-gradient-to-br from-primary-50 to-indigo-50 dark:from-primary-900/20 dark:to-indigo-900/20 p-6 sm:p-8 rounded-2xl border border-primary-100 dark:border-primary-800/50 animate-slide-up" style="animation-delay: 0.1s">
+            <div class="flex items-center space-x-2 mb-4">
+                <span class="text-2xl">🧠</span>
+                <h2 class="text-2xl sm:text-3xl font-semibold text-slate-800 dark:text-slate-200">
+                    Understanding MBTI
+                </h2>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed mb-6">
+                Welcome to our comprehensive exploration of 16 personality types, based on the Myers-Briggs Type Indicator (MBTI). 
                 MBTI is a psychological framework that categorizes individuals into one of 16 distinct personality types based on their 
                 preferences in four key areas:
             </p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                <div class="bg-white p-4 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-blue-600 mb-2">🎯 Extraversion (E) vs. Introversion (I)</h3>
-                    <p class="text-sm text-gray-600">Where do you focus your energy?</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="card-hover bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold bg-gradient-to-r from-primary-500 to-primary-400 bg-clip-text text-transparent mb-2 flex items-center space-x-2">
+                        <span>🎯</span>
+                        <span>Extraversion (E) vs. Introversion (I)</span>
+                    </h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Where do you focus your energy?</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-purple-600 mb-2">🔍 Sensing (S) vs. Intuition (N)</h3>
-                    <p class="text-sm text-gray-600">How do you gather information?</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold bg-gradient-to-r from-accent-purple to-purple-400 bg-clip-text text-transparent mb-2 flex items-center space-x-2">
+                        <span>🔍</span>
+                        <span>Sensing (S) vs. Intuition (N)</span>
+                    </h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">How do you gather information?</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-green-600 mb-2">💭 Thinking (T) vs. Feeling (F)</h3>
-                    <p class="text-sm text-gray-600">How do you make decisions?</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold bg-gradient-to-r from-accent-green to-green-400 bg-clip-text text-transparent mb-2 flex items-center space-x-2">
+                        <span>💭</span>
+                        <span>Thinking (T) vs. Feeling (F)</span>
+                    </h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">How do you make decisions?</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-orange-600 mb-2">📋 Judging (J) vs. Perceiving (P)</h3>
-                    <p class="text-sm text-gray-600">How do you interact with the world?</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold bg-gradient-to-r from-orange-500 to-orange-400 bg-clip-text text-transparent mb-2 flex items-center space-x-2">
+                        <span>📋</span>
+                        <span>Judging (J) vs. Perceiving (P)</span>
+                    </h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">How do you interact with the world?</p>
                 </div>
             </div>
         </section>
 
         <!-- The 16 Types -->
-        <section>
-            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
-                🎭 The 16 MBTI Personality Types
-            </h2>
-            <p class="text-gray-700 text-sm sm:text-base mb-6">
+        <section class="animate-slide-up" style="animation-delay: 0.2s">
+            <div class="flex items-center space-x-2 mb-6">
+                <span class="text-2xl">🎭</span>
+                <h2 class="text-2xl sm:text-3xl font-semibold text-slate-800 dark:text-slate-200">
+                    The 16 MBTI Personality Types
+                </h2>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
                 Based on these preferences, each of the 16 personality types is formed, resulting in unique combinations 
                 like INTJ, ENFP, and ISFJ. This system is widely used in personal development, career guidance, and relationship compatibility.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-500">
-                    <h3 class="font-semibold text-gray-800">INTJ</h3>
-                    <p class="text-sm text-gray-600">The Architect – Strategic, analytical, and insightful.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-primary-500 dark:border-primary-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">INTJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Architect – Strategic, analytical, and insightful.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-500">
-                    <h3 class="font-semibold text-gray-800">INTP</h3>
-                    <p class="text-sm text-gray-600">The Thinker – Curious, inventive, and philosophical.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-accent-purple dark:border-purple-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">INTP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Thinker – Curious, inventive, and philosophical.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-500">
-                    <h3 class="font-semibold text-gray-800">ENTJ</h3>
-                    <p class="text-sm text-gray-600">The Commander – Bold, decisive, and focused on achievement.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-accent-green dark:border-green-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ENTJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Commander – Bold, decisive, and focused on achievement.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-500">
-                    <h3 class="font-semibold text-gray-800">ENTP</h3>
-                    <p class="text-sm text-gray-600">The Debater – Energetic, creative, and excellent at problem-solving.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-orange-500 dark:border-orange-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ENTP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Debater – Energetic, creative, and excellent at problem-solving.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-red-500">
-                    <h3 class="font-semibold text-gray-800">INFJ</h3>
-                    <p class="text-sm text-gray-600">The Advocate – Compassionate, insightful, and idealistic.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-red-500 dark:border-red-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">INFJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Advocate – Compassionate, insightful, and idealistic.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-pink-500">
-                    <h3 class="font-semibold text-gray-800">INFP</h3>
-                    <p class="text-sm text-gray-600">The Mediator – Empathetic, open-minded, and focused on personal values.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-pink-500 dark:border-pink-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">INFP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Mediator – Empathetic, open-minded, and focused on personal values.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-indigo-500">
-                    <h3 class="font-semibold text-gray-800">ENFJ</h3>
-                    <p class="text-sm text-gray-600">The Protagonist – Charismatic, empathetic, and people-oriented.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-indigo-500 dark:border-indigo-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ENFJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Protagonist – Charismatic, empathetic, and people-oriented.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-teal-500">
-                    <h3 class="font-semibold text-gray-800">ENFP</h3>
-                    <p class="text-sm text-gray-600">The Campaigner – Enthusiastic, imaginative, and optimistic.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-teal-500 dark:border-teal-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ENFP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Campaigner – Enthusiastic, imaginative, and optimistic.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-yellow-500">
-                    <h3 class="font-semibold text-gray-800">ISTJ</h3>
-                    <p class="text-sm text-gray-600">The Logistician – Responsible, practical, and focused on details.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-yellow-500 dark:border-yellow-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ISTJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Logistician – Responsible, practical, and focused on details.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-gray-500">
-                    <h3 class="font-semibold text-gray-800">ISFJ</h3>
-                    <p class="text-sm text-gray-600">The Defender – Caring, reliable, and detail-oriented.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-gray-500 dark:border-gray-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ISFJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Defender – Caring, reliable, and detail-oriented.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-400">
-                    <h3 class="font-semibold text-gray-800">ESTJ</h3>
-                    <p class="text-sm text-gray-600">The Executive – Organized, efficient, and driven to lead.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-sky-500 dark:border-sky-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ESTJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Executive – Organized, efficient, and driven to lead.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-purple-400">
-                    <h3 class="font-semibold text-gray-800">ESFJ</h3>
-                    <p class="text-sm text-gray-600">The Consul – Sociable, caring, and highly attuned to others' needs.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-fuchsia-500 dark:border-fuchsia-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ESFJ</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Consul – Sociable, caring, and highly attuned to others' needs.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-400">
-                    <h3 class="font-semibold text-gray-800">ISTP</h3>
-                    <p class="text-sm text-gray-600">The Virtuoso – Practical, adaptable, and spontaneous.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-emerald-500 dark:border-emerald-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ISTP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Virtuoso – Practical, adaptable, and spontaneous.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-400">
-                    <h3 class="font-semibold text-gray-800">ISFP</h3>
-                    <p class="text-sm text-gray-600">The Adventurer – Creative, independent, and driven by personal values.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-amber-500 dark:border-amber-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ISFP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Adventurer – Creative, independent, and driven by personal values.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-red-400">
-                    <h3 class="font-semibold text-gray-800">ESTP</h3>
-                    <p class="text-sm text-gray-600">The Entrepreneur – Energetic, action-oriented, and love challenges.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-rose-500 dark:border-rose-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ESTP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Entrepreneur – Energetic, action-oriented, and loves challenges.</p>
                 </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-pink-400">
-                    <h3 class="font-semibold text-gray-800">ESFP</h3>
-                    <p class="text-sm text-gray-600">The Entertainer – Fun-loving, spontaneous, and thrives on social interactions.</p>
+                <div class="card-hover bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border-l-4 border-lime-500 dark:border-lime-400 border-slate-200 dark:border-slate-700">
+                    <h3 class="font-semibold text-slate-800 dark:text-slate-200">ESFP</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">The Entertainer – Fun-loving, spontaneous, and thrives on social interactions.</p>
                 </div>
             </div>
         </section>
 
         <!-- Science Section -->
-        <section class="bg-gray-50 p-4 sm:p-6 rounded-lg">
-            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
-                🔬 The Science Behind MBTI
-            </h2>
-            <div class="space-y-4 text-sm sm:text-base text-gray-700">
+        <section class="bg-slate-50 dark:bg-slate-800/50 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 animate-slide-up" style="animation-delay: 0.3s">
+            <div class="flex items-center space-x-2 mb-4">
+                <span class="text-2xl">🔬</span>
+                <h2 class="text-2xl sm:text-3xl font-semibold text-slate-800 dark:text-slate-200">
+                    The Science Behind MBTI
+                </h2>
+            </div>
+            <div class="space-y-4 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
                 <p>
                     The MBTI is based on Carl Jung's theory of psychological types. It was developed by Isabel Briggs Myers 
                     and her mother, Katharine Cook Briggs, during the 1940s. Their work aimed to make Jung's theory more 
