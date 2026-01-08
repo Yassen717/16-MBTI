@@ -8,6 +8,14 @@
     <meta name="keywords" content="MBTI, personality types, Myers-Briggs, psychology, traits">
     <title>{% block title %}MBTI Personality Types Explorer{% endblock %}</title>
     
+    <!-- Prevent flash of light mode -->
+    <script>
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -120,6 +128,16 @@
             scroll-behavior: smooth;
         }
         
+        /* Prevent flash of wrong theme */
+        body {
+            opacity: 0;
+            transition: opacity 0.2s ease-in;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+        
         @media (max-width: 768px) {
             button, a {
                 min-height: 44px;
@@ -146,13 +164,13 @@
     <!-- Footer -->
     {% include "components/footer.html" %}
 
+    <!-- Fade in content -->
+    <script>
+        document.body.classList.add('loaded');
+    </script>
+
     <!-- Dark Mode Toggle Script -->
     <script>
-        if (localStorage.getItem('darkMode') === 'true' || 
-            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        }
-        
         function toggleDarkMode() {
             const html = document.documentElement;
             html.classList.toggle('dark');
