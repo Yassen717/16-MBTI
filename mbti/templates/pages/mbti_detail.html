@@ -151,6 +151,7 @@
         const size = window.innerWidth < 640 ? 112 : 128;
         const thickness = 14;
         const radius = (size - thickness) / 2;
+        const isDark = document.documentElement.classList.contains('dark');
 
         container.innerHTML = '';
 
@@ -169,7 +170,7 @@
 
         svg.append('path')
             .attr('d', backgroundArc)
-            .attr('fill', 'rgba(148, 163, 184, 0.2)');
+            .attr('fill', isDark ? 'rgba(71, 85, 105, 0.4)' : 'rgba(148, 163, 184, 0.2)');
 
         const foregroundArc = d3.arc()
             .innerRadius(radius - thickness)
@@ -186,7 +187,7 @@
             .attr('text-anchor', 'middle')
             .attr('dy', '.35em')
             .attr('class', 'font-bold text-lg')
-            .attr('fill', 'currentColor')
+            .attr('fill', isDark ? '#e2e8f0' : '#1e293b')
             .text(`${value}%`);
     }
 </script>
