@@ -3,78 +3,96 @@
 {% block title %}{{ mbti.name }} - MBTI Personality Type{% endblock title %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto">
+<div class="max-w-5xl mx-auto space-y-8">
     <!-- Header Section -->
-    <div class="text-center mb-8">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            {{ mbti.name }}
+    <div class="text-center animate-slide-up">
+        <div class="inline-block mb-4">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary-500/20 to-accent-purple/20 dark:from-primary-500/30 dark:to-accent-purple/30">
+                <span class="text-4xl">🧠</span>
+            </div>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            <span class="bg-gradient-to-r from-primary-600 via-accent-purple to-accent-green bg-clip-text text-transparent">
+                {{ mbti.name }}
+            </span>
         </h1>
-        <div class="w-24 h-1 bg-blue-500 mx-auto rounded-full"></div>
+        <div class="flex justify-center">
+            <div class="h-1 w-32 bg-gradient-to-r from-primary-500 to-accent-purple rounded-full"></div>
+        </div>
     </div>
     
     <!-- Main Content -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Description Card -->
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 sm:p-8 rounded-lg shadow-lg">
-            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
-                📝 Description
-            </h2>
-            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+        <div class="bg-gradient-to-br from-primary-50 to-indigo-50 dark:from-primary-900/20 dark:to-indigo-900/20 p-6 sm:p-8 rounded-2xl shadow-sm border border-primary-100 dark:border-primary-800/50 animate-slide-up" style="animation-delay: 0.1s">
+            <div class="flex items-center space-x-2 mb-4">
+                <span class="text-2xl">📝</span>
+                <h2 class="text-xl sm:text-2xl font-semibold text-slate-800 dark:text-slate-200">
+                    Description
+                </h2>
+            </div>
+            <p class="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
                 {{ mbti.description }}
             </p>
         </div>
         
         <!-- Traits Card -->
-        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg border border-gray-100">
-            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">
-                🎯 Personality Traits
-            </h2>
+        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 animate-slide-up" style="animation-delay: 0.2s">
+            <div class="flex items-center space-x-2 mb-6">
+                <span class="text-2xl">🎯</span>
+                <h2 class="text-xl sm:text-2xl font-semibold text-slate-800 dark:text-slate-200">
+                    Personality Traits
+                </h2>
+            </div>
             
-            <div class="space-y-6">
+            <div class="space-y-5">
                 <!-- Logic Trait -->
-                <div class="bg-blue-50 p-4 rounded-lg">
+                <div class="group">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex items-center text-sm sm:text-base font-medium text-gray-700">
-                            🧠 Logic
+                        <span class="flex items-center space-x-2 text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300">
+                            <span class="text-lg group-hover:scale-110 transition-transform">🧠</span>
+                            <span>Logic</span>
                         </span>
-                        <span class="text-lg sm:text-xl font-bold text-blue-600">
+                        <span class="text-lg sm:text-xl font-bold bg-gradient-to-r from-primary-500 to-primary-400 bg-clip-text text-transparent">
                             {{ mbti.logic }}%
                         </span>
                     </div>
-                    <div class="w-full bg-blue-200 rounded-full h-2">
-                        <div class="bg-blue-600 h-2 rounded-full transition-all duration-500" 
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-primary-500 to-primary-400 h-2.5 rounded-full transition-all duration-700" 
                              style="width: {{ mbti.logic }}%"></div>
                     </div>
                 </div>
                 
                 <!-- Imagination Trait -->
-                <div class="bg-purple-50 p-4 rounded-lg">
+                <div class="group">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex items-center text-sm sm:text-base font-medium text-gray-700">
-                            💭 Imagination
+                        <span class="flex items-center space-x-2 text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300">
+                            <span class="text-lg group-hover:scale-110 transition-transform">💭</span>
+                            <span>Imagination</span>
                         </span>
-                        <span class="text-lg sm:text-xl font-bold text-purple-600">
+                        <span class="text-lg sm:text-xl font-bold bg-gradient-to-r from-accent-purple to-purple-400 bg-clip-text text-transparent">
                             {{ mbti.imagination }}%
                         </span>
                     </div>
-                    <div class="w-full bg-purple-200 rounded-full h-2">
-                        <div class="bg-purple-600 h-2 rounded-full transition-all duration-500" 
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-accent-purple to-purple-400 h-2.5 rounded-full transition-all duration-700" 
                              style="width: {{ mbti.imagination }}%"></div>
                     </div>
                 </div>
                 
                 <!-- Discipline Trait -->
-                <div class="bg-green-50 p-4 rounded-lg">
+                <div class="group">
                     <div class="flex justify-between items-center mb-2">
-                        <span class="flex items-center text-sm sm:text-base font-medium text-gray-700">
-                            📏 Discipline
+                        <span class="flex items-center space-x-2 text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300">
+                            <span class="text-lg group-hover:scale-110 transition-transform">📏</span>
+                            <span>Discipline</span>
                         </span>
-                        <span class="text-lg sm:text-xl font-bold text-green-600">
+                        <span class="text-lg sm:text-xl font-bold bg-gradient-to-r from-accent-green to-green-400 bg-clip-text text-transparent">
                             {{ mbti.discipline }}%
                         </span>
                     </div>
-                    <div class="w-full bg-green-200 rounded-full h-2">
-                        <div class="bg-green-600 h-2 rounded-full transition-all duration-500" 
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-accent-green to-green-400 h-2.5 rounded-full transition-all duration-700" 
                              style="width: {{ mbti.discipline }}%"></div>
                     </div>
                 </div>
@@ -83,55 +101,57 @@
     </div>
     
     <!-- Interactive Charts Section -->
-    <div class="mt-8 sm:mt-12">
-        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 text-center">
-            📊 Interactive Charts
-        </h2>
-        <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div class="text-center">
-                    <h3 class="text-sm sm:text-base font-medium text-gray-700 mb-4">Logic</h3>
-                    <div id="chart-logic-detail" class="w-32 h-32 mx-auto"></div>
-                </div>
-                <div class="text-center">
-                    <h3 class="text-sm sm:text-base font-medium text-gray-700 mb-4">Imagination</h3>
-                    <div id="chart-imagination-detail" class="w-32 h-32 mx-auto"></div>
-                </div>
-                <div class="text-center">
-                    <h3 class="text-sm sm:text-base font-medium text-gray-700 mb-4">Discipline</h3>
-                    <div id="chart-discipline-detail" class="w-32 h-32 mx-auto"></div>
-                </div>
+    <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 animate-slide-up" style="animation-delay: 0.3s">
+        <div class="flex items-center justify-center space-x-2 mb-6">
+            <span class="text-2xl">📊</span>
+            <h2 class="text-xl sm:text-2xl font-semibold text-slate-800 dark:text-slate-200">
+                Interactive Charts
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+            <div class="text-center group">
+                <h3 class="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Logic</h3>
+                <div id="chart-logic-detail" class="w-28 h-28 sm:w-32 sm:h-32 mx-auto group-hover:scale-110 transition-transform duration-300"></div>
+            </div>
+            <div class="text-center group">
+                <h3 class="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 mb-4 group-hover:text-accent-purple dark:group-hover:text-purple-400 transition-colors">Imagination</h3>
+                <div id="chart-imagination-detail" class="w-28 h-28 sm:w-32 sm:h-32 mx-auto group-hover:scale-110 transition-transform duration-300"></div>
+            </div>
+            <div class="text-center group">
+                <h3 class="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 mb-4 group-hover:text-accent-green dark:group-hover:text-green-400 transition-colors">Discipline</h3>
+                <div id="chart-discipline-detail" class="w-28 h-28 sm:w-32 sm:h-32 mx-auto group-hover:scale-110 transition-transform duration-300"></div>
             </div>
         </div>
     </div>
     
     <!-- Action Buttons -->
-    <div class="mt-8 sm:mt-12 text-center space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-slide-up" style="animation-delay: 0.4s">
         <a href="{% url 'home' %}" 
-           class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 transform hover:scale-105">
-            🏠 Back to Home
+           class="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-primary-500 to-accent-purple hover:from-primary-600 hover:to-purple-600 text-white px-8 py-4 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+            <span>🏠</span>
+            <span>Back to Home</span>
         </a>
         <a href="{% url 'about' %}" 
-           class="inline-block bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200 transform hover:scale-105">
-            ℹ️ Learn More About MBTI
+           class="inline-flex items-center justify-center space-x-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-8 py-4 rounded-xl font-medium transition-all duration-200 transform hover:scale-105">
+            <span>ℹ️</span>
+            <span>Learn More About MBTI</span>
         </a>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        createCircularChart('chart-logic-detail', {{ mbti.logic }}, 'Logic', '#3b82f6');
-        createCircularChart('chart-imagination-detail', {{ mbti.imagination }}, 'Imagination', '#8b5cf6');
-        createCircularChart('chart-discipline-detail', {{ mbti.discipline }}, 'Discipline', '#10b981');
+        createCircularChart('chart-logic-detail', {{ mbti.logic }}, '#0ea5e9');
+        createCircularChart('chart-imagination-detail', {{ mbti.imagination }}, '#8b5cf6');
+        createCircularChart('chart-discipline-detail', {{ mbti.discipline }}, '#10b981');
     });
 
-    function createCircularChart(containerId, value, label, color) {
+    function createCircularChart(containerId, value, color) {
         const container = document.getElementById(containerId);
-        const size = 128; // Fixed size for detail page
-        const thickness = 12;
+        const size = window.innerWidth < 640 ? 112 : 128;
+        const thickness = 14;
         const radius = (size - thickness) / 2;
 
-        // Clear previous content
         container.innerHTML = '';
 
         const svg = d3.select(`#${containerId}`)
@@ -141,7 +161,6 @@
             .append('g')
             .attr('transform', `translate(${size / 2}, ${size / 2})`);
 
-        // Background Arc
         const backgroundArc = d3.arc()
             .innerRadius(radius - thickness)
             .outerRadius(radius)
@@ -150,9 +169,8 @@
 
         svg.append('path')
             .attr('d', backgroundArc)
-            .attr('fill', '#e5e7eb');
+            .attr('fill', 'rgba(148, 163, 184, 0.2)');
 
-        // Foreground Arc
         const foregroundArc = d3.arc()
             .innerRadius(radius - thickness)
             .outerRadius(radius)
@@ -164,12 +182,11 @@
             .attr('fill', color)
             .attr('class', 'transition-all duration-1000 ease-out');
 
-        // Percentage Text
         svg.append('text')
             .attr('text-anchor', 'middle')
             .attr('dy', '.35em')
             .attr('class', 'font-bold text-lg')
-            .attr('fill', '#374151')
+            .attr('fill', 'currentColor')
             .text(`${value}%`);
     }
 </script>
