@@ -140,16 +140,26 @@
 </div>
 
 <script>
+    function runWhenIdle(fn) {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(fn, { timeout: 1000 });
+        } else {
+            setTimeout(fn, 0);
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
-        createCircularChart('chart-logic-detail', {{ mbti.logic }}, '#0ea5e9');
-        createCircularChart('chart-imagination-detail', {{ mbti.imagination }}, '#8b5cf6');
-        createCircularChart('chart-discipline-detail', {{ mbti.discipline }}, '#10b981');
+        runWhenIdle(function () {
+            createCircularChart('chart-logic-detail', {{ mbti.logic }}, '#0ea5e9');
+            createCircularChart('chart-imagination-detail', {{ mbti.imagination }}, '#8b5cf6');
+            createCircularChart('chart-discipline-detail', {{ mbti.discipline }}, '#10b981');
+        });
     });
 
     function createCircularChart(containerId, value, color) {
         const container = document.getElementById(containerId);
         const size = window.innerWidth < 640 ? 112 : 128;
-        const thickness = 14;
+        const thickness = 10;
         const radius = (size - thickness) / 2;
         const isDark = document.documentElement.classList.contains('dark');
 
