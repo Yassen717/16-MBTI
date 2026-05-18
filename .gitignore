@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+
+# Django local database and collected static files
+db.sqlite3
+static/
+staticfiles/
+
+# Node dependencies
+node_modules/
+
+# Local/system files
+.DS_Store
+=4.2
