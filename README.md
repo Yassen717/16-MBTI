@@ -1,8 +1,7 @@
 # 🧠 MBTI Personality Types Explorer
 
-[![Django](https://img.shields.io/badge/Django-4.2+-green.svg)](https://www.djangoproject.com/)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Django](https://img.shields.io/badge/Django-6.0.5-green.svg)](https://www.djangoproject.com/)
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
 
 A modern web application built with Django that explores and visualizes the 16 Myers-Briggs Type Indicator (MBTI) personality types with interactive charts and detailed trait analysis.
 
@@ -19,15 +18,15 @@ A modern web application built with Django that explores and visualizes the 16 M
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.12 or higher
 - pip (Python package installer)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/mbti-personality-explorer.git
-   cd mbti-personality-explorer
+   git clone https://github.com/Yassen717/16-MBTI.git
+   cd 16-MBTI
    ```
 
 2. **Create a virtual environment**
@@ -41,28 +40,35 @@ A modern web application built with Django that explores and visualizes the 16 M
    pip install -r requirements.txt
    ```
 
-4. **Run database migrations**
+4. **Set environment variables**
+   ```bash
+   export SECRET_KEY=dev-only-secret-key
+   export DEBUG=True
+   export ALLOWED_HOSTS=127.0.0.1,localhost
+   ```
+
+5. **Run database migrations**
    ```bash
    python manage.py migrate
    ```
 
-5. **Create a superuser (optional)**
+6. **Create a superuser (optional)**
    ```bash
    python manage.py createsuperuser
    ```
 
-6. **Start the development server**
+7. **Start the development server**
    ```bash
    python manage.py runserver
    ```
 
-7. **Open your browser**
+8. **Open your browser**
    Navigate to `http://127.0.0.1:8000/`
 
 ## 📁 Project Structure
 
 ```
-mbti-personality-explorer/
+16-MBTI/
 ├── 📁 mbti/                    # Main Django app
 │   ├── 📁 templates/           # HTML templates
 │   │   ├── 📁 components/      # Reusable components
@@ -98,11 +104,11 @@ mbti-personality-explorer/
 
 ## 🛠️ Technology Stack
 
-- **🐍 Backend**: Django 4.2+
+- **🐍 Backend**: Django 6.0.5
 - **🎨 Frontend**: HTML5, CSS3, JavaScript
 - **📊 Charts**: D3.js for interactive visualizations
 - **🎨 Styling**: Tailwind CSS for modern design
-- **🗄️ Database**: SQLite (development), PostgreSQL (production ready)
+- **🗄️ Database**: SQLite
 - **🔧 Development**: Python virtual environments
 
 ## 📊 MBTI Types Supported
@@ -160,7 +166,8 @@ python manage.py collectstatic
    ```bash
    export DJANGO_SETTINGS_MODULE=project.settings
    export DEBUG=False
-   export SECRET_KEY=your-secret-key
+   export SECRET_KEY="$(python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')"
+   export ALLOWED_HOSTS="$(hostname -f),localhost,127.0.0.1"
    ```
 
 2. **Install production dependencies**
@@ -194,7 +201,7 @@ We welcome contributions! Please follow these steps:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project currently does not include a license file.
 
 ## 🙏 Acknowledgments
 
@@ -207,8 +214,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help:
 
-- 🐛 **Report bugs**: [GitHub Issues](https://github.com/Yassen717/mbti-personality-explorer/issues)
-- 💡 **Request features**: [GitHub Issues](https://github.com/Yassen717/mbti-personality-explorer/issues)
+- 🐛 **Report bugs**: [GitHub Issues](https://github.com/Yassen717/16-MBTI/issues)
+- 💡 **Request features**: [GitHub Issues](https://github.com/Yassen717/16-MBTI/issues)
 - 📧 **Contact**: engyassenibrahim@gmail.com
 ---
 
