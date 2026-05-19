@@ -7,16 +7,17 @@
     <meta name="description" content="Explore the 16 MBTI personality types with interactive charts and detailed trait analysis">
     <meta name="keywords" content="MBTI, personality types, Myers-Briggs, psychology, traits">
     <title>{% block title %}MBTI Personality Types Explorer{% endblock %}</title>
-    
-    <!-- Prevent flash of light mode -->
+
     <script>
-        if (localStorage.getItem('darkMode') === 'true' || 
-            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        const storedTheme = localStorage.getItem('theme');
+        const legacyDarkMode = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const useDark = storedTheme ? storedTheme === 'dark' : legacyDarkMode === 'true' || prefersDark;
+        if (useDark) {
             document.documentElement.classList.add('dark');
         }
     </script>
-    
-    <!-- Tailwind CSS -->
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script>
@@ -26,116 +27,291 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
                         },
                         accent: {
-                            purple: '#8b5cf6',
-                            green: '#10b981',
+                            violet: '#7c3aed',
+                            teal: '#0f766e',
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'scale-in': 'scaleIn 0.3s ease-out',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        scaleIn: {
-                            '0%': { transform: 'scale(0.95)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' },
-                        },
-                    },
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'system-ui', 'sans-serif'],
+                    }
                 },
             },
         }
     </script>
-    
-    <!-- Custom styles -->
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.07);
+            color-scheme: light;
+            --bg: oklch(97.5% 0.01 260);
+            --bg-2: oklch(95.5% 0.012 260);
+            --surface: oklch(99.2% 0.004 260 / 0.92);
+            --surface-muted: oklch(96.5% 0.01 260);
+            --surface-strong: oklch(100% 0.003 260);
+            --border: oklch(88% 0.012 260);
+            --text: oklch(27% 0.02 260);
+            --muted: oklch(47% 0.018 260);
+            --primary: oklch(58% 0.19 264);
+            --primary-strong: oklch(51% 0.2 264);
+            --secondary: oklch(58% 0.12 185);
+            --success: oklch(60% 0.12 170);
+            --track: oklch(91% 0.01 260);
+            --chart-1: oklch(58% 0.19 264);
+            --chart-2: oklch(60% 0.12 185);
+            --chart-3: oklch(63% 0.14 160);
+            --shadow: 0 18px 42px -26px oklch(36% 0.02 260 / 0.35);
+            --ring: oklch(64% 0.16 264 / 0.22);
         }
-        
+
         .dark {
-            --glass-bg: rgba(30, 41, 59, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color-scheme: dark;
+            --bg: oklch(16% 0.02 260);
+            --bg-2: oklch(19% 0.02 260);
+            --surface: oklch(22% 0.02 260 / 0.94);
+            --surface-muted: oklch(20% 0.018 260);
+            --surface-strong: oklch(24% 0.022 260);
+            --border: oklch(31% 0.02 260);
+            --text: oklch(93% 0.01 260);
+            --muted: oklch(73% 0.015 260);
+            --primary: oklch(74% 0.14 264);
+            --primary-strong: oklch(80% 0.12 264);
+            --secondary: oklch(76% 0.11 185);
+            --success: oklch(76% 0.1 170);
+            --track: oklch(30% 0.014 260);
+            --chart-1: oklch(74% 0.14 264);
+            --chart-2: oklch(76% 0.11 185);
+            --chart-3: oklch(78% 0.1 160);
+            --shadow: 0 22px 52px -30px oklch(0% 0 0 / 0.6);
+            --ring: oklch(74% 0.14 264 / 0.28);
         }
-        
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
-        }
-        
-        .card-hover {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .card-hover:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        @media (max-width: 640px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-        }
-        
+
         html {
             scroll-behavior: smooth;
         }
-        
-        /* Prevent flash of wrong theme */
+
         body {
-            opacity: 0;
-            transition: opacity 0.12s ease-in;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 15% 0%, oklch(64% 0.16 264 / 0.13), transparent 28%),
+                radial-gradient(circle at 85% 10%, oklch(76% 0.11 185 / 0.1), transparent 24%),
+                linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+            background-attachment: fixed;
         }
-        
-        body.loaded {
-            opacity: 1;
+
+        .app-header,
+        .app-footer {
+            background: var(--surface);
+            border-color: var(--border);
+        }
+
+        .app-header {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .app-footer {
+            border-top: 1px solid var(--border);
+        }
+
+        .surface {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .surface-muted {
+            background: var(--surface-muted);
+        }
+
+        .surface-strong {
+            background: var(--surface-strong);
+        }
+
+        .kicker {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 4.8vw, 4.75rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 2vw, 2.25rem);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            font-weight: 750;
+            color: var(--text);
+        }
+
+        .lead {
+            max-width: 68ch;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+
+        .text-body {
+            color: var(--text);
+        }
+
+        .text-muted {
+            color: var(--muted);
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--surface-muted);
+            color: var(--text);
+            padding: 0.45rem 0.8rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 999px;
+            padding: 0.7rem 1rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            background: var(--surface-muted);
+            color: var(--text);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            border-radius: 0.95rem;
+            padding: 0.85rem 1.1rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1;
+            transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+        }
+
+        .button:focus-visible,
+        .nav-link:focus-visible,
+        .control:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px var(--ring);
+        }
+
+        .button-primary {
+            background: var(--primary);
+            color: oklch(99% 0.01 260);
+            box-shadow: 0 12px 28px -18px var(--primary);
+        }
+
+        .button-primary:hover {
+            background: var(--primary-strong);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+            background: var(--surface-strong);
+            color: var(--text);
+        }
+
+        .button-secondary:hover {
+            background: var(--surface-muted);
+        }
+
+        .button-ghost {
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--muted);
+        }
+
+        .button-ghost:hover {
+            background: var(--surface-muted);
+            color: var(--text);
+        }
+
+        .control {
+            width: 100%;
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            background: var(--surface-strong);
+            color: var(--text);
+            padding: 0.95rem 1rem;
+            transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+        }
+
+        .control::placeholder {
+            color: var(--muted);
+        }
+
+        .control:hover {
+            background: var(--surface);
+        }
+
+        .metric-track {
+            height: 0.55rem;
+            overflow: hidden;
+            border-radius: 999px;
+            background: var(--track);
+        }
+
+        .metric-fill {
+            height: 100%;
+            border-radius: inherit;
+            transition: width 220ms ease-out;
+        }
+
+        .chart-frame {
+            display: grid;
+            place-items: center;
+            min-height: 4.5rem;
+            border-radius: 1.1rem;
+            border: 1px solid var(--border);
+            background: var(--surface-strong);
+        }
+
+        .type-card {
+            transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+        }
+
+        .type-card:hover {
+            transform: translateY(-2px);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -145,12 +321,8 @@
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
-            .card-hover:hover {
-                transform: none;
-                box-shadow: none;
-            }
         }
-        
+
         @media (max-width: 768px) {
             button, a {
                 min-height: 44px;
@@ -159,36 +331,74 @@
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900 font-sans leading-normal tracking-normal transition-colors duration-300">
-
+<body class="flex min-h-screen flex-col font-sans antialiased">
     {% include "components/navbar.html" %}
 
-    <!-- Content Area -->
-    <main class="flex-grow">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-            <div class="glass rounded-2xl overflow-hidden animate-fade-in">
-                <div class="p-4 sm:p-6 lg:p-8">
-                    {% block content %}{% endblock %}
-                </div>
-            </div>
-        </div>
+    <main class="flex-1 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
     {% include "components/footer.html" %}
 
-    <!-- Fade in content -->
     <script>
-        document.body.classList.add('loaded');
-    </script>
+        function syncThemeToggleState() {
+            const isDark = document.documentElement.classList.contains('dark');
+            document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+                button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
 
-    <!-- Dark Mode Toggle Script -->
-    <script>
+                const label = button.querySelector('[data-theme-label]');
+                if (label) {
+                    label.textContent = isDark ? 'Light mode' : 'Dark mode';
+                }
+
+                const darkIcon = button.querySelector('[data-theme-icon="dark"]');
+                const lightIcon = button.querySelector('[data-theme-icon="light"]');
+                if (darkIcon) {
+                    darkIcon.classList.toggle('hidden', !isDark);
+                }
+                if (lightIcon) {
+                    lightIcon.classList.toggle('hidden', isDark);
+                }
+            });
+        }
+
         function toggleDarkMode() {
             const html = document.documentElement;
-            html.classList.toggle('dark');
-            localStorage.setItem('darkMode', html.classList.contains('dark'));
+            const nextDark = !html.classList.contains('dark');
+            html.classList.toggle('dark', nextDark);
+            localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+            localStorage.setItem('darkMode', String(nextDark));
+            syncThemeToggleState();
+            document.dispatchEvent(new CustomEvent('themechange', { detail: { dark: nextDark } }));
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            syncThemeToggleState();
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', String(!isHidden));
+                });
+
+                document.addEventListener('click', function (event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                document.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape') {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
