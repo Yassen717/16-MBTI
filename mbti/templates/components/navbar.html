@@ -1,89 +1,68 @@
-<header class="sticky top-0 z-50 glass border-b border-white/20 dark:border-slate-700/50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4">
-            <!-- Logo/Brand -->
-            <div class="flex items-center space-x-2">
-                <a href="{% url 'home' %}" class="flex items-center space-x-2 group">
-                    <span class="text-2xl sm:text-3xl transform group-hover:scale-110 transition-transform duration-200">🧠</span>
-                    <span class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-purple bg-clip-text text-transparent">
-                        MBTI Explorer
-                    </span>
-                </a>
-            </div>
+<header class="app-header sticky top-0 z-50">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <a href="{% url 'home' %}" class="flex items-center gap-3 rounded-2xl px-1 py-1">
+            <span class="flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] text-lg shadow-sm">🧠</span>
+            <span class="space-y-0.5">
+                <span class="block text-sm font-bold tracking-tight text-body">MBTI Explorer</span>
+                <span class="block text-xs font-medium text-muted">Browse, compare, and inspect the 16 types</span>
+            </span>
+        </a>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-1">
-                <a href="{% url 'home' %}" class="px-4 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-primary-50 dark:hover:bg-slate-700/50 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-all duration-200">
-                    <span class="flex items-center space-x-2">
-                        <span>🏠</span>
-                        <span>Home</span>
-                    </span>
-                </a>
-                <a href="{% url 'about' %}" class="px-4 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-primary-50 dark:hover:bg-slate-700/50 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-all duration-200">
-                    <span class="flex items-center space-x-2">
-                        <span>ℹ️</span>
-                        <span>About</span>
-                    </span>
-                </a>
-                <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-primary-50 dark:hover:bg-slate-700/50 transition-all duration-200" aria-label="Toggle dark mode">
-                    <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                    </svg>
-                    <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                    </svg>
-                </button>
-            </nav>
+        <nav class="hidden items-center gap-2 md:flex">
+            <a href="{% url 'home' %}" class="nav-link">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About</a>
+            <button
+                type="button"
+                onclick="toggleDarkMode()"
+                data-theme-toggle
+                aria-pressed="false"
+                aria-label="Toggle dark mode"
+                class="button button-ghost"
+            >
+                <svg data-theme-icon="dark" class="hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8-8h1M3 12h1m13.657 5.657.707.707M6.343 6.343l-.707-.707m12.728 0-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path>
+                </svg>
+                <svg data-theme-icon="light" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646Z"></path>
+                </svg>
+                <span data-theme-label>Dark mode</span>
+            </button>
+        </nav>
 
-            <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center space-x-2">
-                <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-primary-50 dark:hover:bg-slate-700/50 transition-all duration-200" aria-label="Toggle dark mode">
-                    <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                    </svg>
-                    <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                    </svg>
-                </button>
-                <button id="mobile-menu-button" class="p-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-primary-50 dark:hover:bg-slate-700/50 transition-all duration-200">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
+        <div class="flex items-center gap-2 md:hidden">
+            <button
+                type="button"
+                onclick="toggleDarkMode()"
+                data-theme-toggle
+                aria-pressed="false"
+                aria-label="Toggle dark mode"
+                class="button button-ghost px-3"
+            >
+                <svg data-theme-icon="dark" class="hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8-8h1M3 12h1m13.657 5.657.707.707M6.343 6.343l-.707-.707m12.728 0-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path>
+                </svg>
+                <svg data-theme-icon="light" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646Z"></path>
+                </svg>
+            </button>
+            <button
+                id="mobile-menu-button"
+                type="button"
+                class="button button-secondary px-3"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
+    </div>
 
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden pb-4">
-            <div class="space-y-1">
-                <a href="{% url 'home' %}" class="flex items-center space-x-2 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-primary-50 dark:hover:bg-slate-700/50 font-medium transition-all duration-200">
-                    <span>🏠</span>
-                    <span>Home</span>
-                </a>
-                <a href="{% url 'about' %}" class="flex items-center space-x-2 px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-primary-50 dark:hover:bg-slate-700/50 font-medium transition-all duration-200">
-                    <span>ℹ️</span>
-                    <span>About</span>
-                </a>
-            </div>
+    <div id="mobile-menu" class="hidden border-t border-[var(--border)] bg-[var(--surface)] md:hidden">
+        <div class="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6 lg:px-8">
+            <a href="{% url 'home' %}" class="nav-link">Home</a>
+            <a href="{% url 'about' %}" class="nav-link">About</a>
         </div>
     </div>
 </header>
-
-<script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        
-        if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
-            mobileMenu.classList.add('hidden');
-        }
-    });
-</script>
